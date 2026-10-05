@@ -8,37 +8,41 @@
 </head>
 <body>
 
-    <div class="box">
-        <!-- Header & Theme Switcher (Bonus) -->
-        <div class="top-bar">
-            <h1>Day 5: DOM &amp; Event Handling</h1>
-            <div class="theme-buttons">
-                <button onclick="setTheme('light')">☀️ Light</button>
-                <button onclick="setTheme('dark')">🌙 Dark</button>
+    <div class="container">
+
+        <!-- Header Card with Theme Switcher -->
+        <header class="card header-card">
+            <div class="header-top">
+                <h1>Day 5: DOM &amp; Event Handling</h1>
+                <div class="theme-buttons">
+                    <button onclick="setTheme('light')">☀️ Light</button>
+                    <button onclick="setTheme('dark')">🌙 Dark</button>
+                </div>
             </div>
-        </div>
-        <p class="subtitle">Sahil Kelkar | AISECT Infotech</p>
+            <p class="subtitle">Student: Sahil Kelkar | Internship: AISECT Infotech</p>
+        </header>
 
-        <!-- ==========================================
-             TASK 1: Interactive Buttons
-             ========================================== -->
-        <div class="task-section">
-            <h2>Task 1: Interactive Buttons &amp; Styles</h2>
+        <!-- CARD 1: Task 1 - Interactive Buttons -->
+        <section class="card">
+            <h2>Task 1: Interactive Buttons &amp; Styling</h2>
+            <p class="card-desc">Change styles dynamically using JavaScript DOM properties.</p>
 
-            <!-- Sample Text to Manipulate -->
+            <!-- Preview Box -->
             <div class="preview-box">
                 <p id="sampleText">Welcome! Try styling this text using the controls below.</p>
             </div>
 
-            <!-- 1. Color Buttons (Red, Green, Blue) -->
+            <!-- Color Buttons -->
             <div class="control-row">
                 <label>Text Color:</label>
-                <button class="btn-color btn-red" onclick="changeColor('red')">RED</button>
-                <button class="btn-color btn-green" onclick="changeColor('green')">GREEN</button>
-                <button class="btn-color btn-blue" onclick="changeColor('blue')">BLUE</button>
+                <div class="btn-group">
+                    <button class="btn-color btn-red" onclick="changeColor('red')">RED</button>
+                    <button class="btn-color btn-green" onclick="changeColor('green')">GREEN</button>
+                    <button class="btn-color btn-blue" onclick="changeColor('blue')">BLUE</button>
+                </div>
             </div>
 
-            <!-- 2. Font Family Dropdown -->
+            <!-- Font Family Dropdown -->
             <div class="control-row">
                 <label for="fontSelect">Font Family:</label>
                 <select id="fontSelect" onchange="changeFont()">
@@ -49,27 +53,31 @@
                 </select>
             </div>
 
-            <!-- 3. Font Size Buttons (A+ / A-) -->
+            <!-- Font Size Buttons -->
             <div class="control-row">
                 <label>Font Size:</label>
-                <button class="btn" onclick="changeFontSize(2)">A+ (Increase)</button>
-                <button class="btn" onclick="changeFontSize(-2)">A- (Decrease)</button>
+                <div class="btn-group">
+                    <button class="btn" onclick="changeFontSize(2)">A+ (Increase)</button>
+                    <button class="btn" onclick="changeFontSize(-2)">A- (Decrease)</button>
+                </div>
             </div>
 
-            <!-- 4. Mouseover Font Style (Bold, Italic, Underline) -->
+            <!-- Mouseover Font Style -->
             <div class="control-row">
                 <label>Hover Style:</label>
-                <button class="btn btn-hover" onmouseover="setStyle('bold')" onmouseout="resetStyle()">Bold</button>
-                <button class="btn btn-hover" onmouseover="setStyle('italic')" onmouseout="resetStyle()">Italic</button>
-                <button class="btn btn-hover" onmouseover="setStyle('underline')" onmouseout="resetStyle()">Underline</button>
+                <div class="btn-group">
+                    <button class="btn" onmouseover="setStyle('bold')" onmouseout="resetStyle()">Bold</button>
+                    <button class="btn" onmouseover="setStyle('italic')" onmouseout="resetStyle()">Italic</button>
+                    <button class="btn" onmouseover="setStyle('underline')" onmouseout="resetStyle()">Underline</button>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <!-- ==========================================
-             TASK 2: Simple Form Validation
-             ========================================== -->
-        <div class="task-section">
+        <!-- CARD 2: Task 2 - Simple Form Validation -->
+        <section class="card">
             <h2>Task 2: Simple Form Validation</h2>
+            <p class="card-desc">Validates non-empty fields and displays alerts directly below the inputs.</p>
+
             <form id="userForm" onsubmit="validateForm(event)">
                 <div class="form-group">
                     <label for="name">Name:</label>
@@ -86,13 +94,12 @@
                 <button type="submit" class="btn btn-primary">Submit Form</button>
                 <p id="formSuccess" class="success-msg"></p>
             </form>
-        </div>
+        </section>
 
-        <!-- ==========================================
-             TASK 3: Simple Calculator
-             ========================================== -->
-        <div class="task-section">
+        <!-- CARD 3: Task 3 - Simple Calculator -->
+        <section class="card">
             <h2>Task 3: Simple Calculator</h2>
+            <p class="card-desc">Performs basic arithmetic operations with non-empty validation.</p>
 
             <div class="form-group">
                 <label for="num1">First Number:</label>
@@ -114,7 +121,12 @@
             </div>
 
             <p id="calcResult" class="result-msg"></p>
-        </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 Sahil Kelkar | <a href="https://github.com/sahil-kelkar" target="_blank" style="color:#0d6efd;">GitHub Profile</a> | Day 5 Tasks Done</p>
+        </footer>
 
     </div>
 

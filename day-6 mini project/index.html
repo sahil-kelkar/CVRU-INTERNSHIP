@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahil Kelkar | Portfolio</title>
+    
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==========================================
+         1. HEADER & NAVBAR (Flexbox Layout)
+         ========================================== -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#about" class="logo">Sahil<span>.dev</span></a>
+            
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <!-- Theme Toggle Button (Bonus) -->
+            <button id="themeToggleBtn" class="btn-theme" onclick="toggleTheme()">🌙 Dark</button>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ==========================================
+             2. ABOUT ME / HERO SECTION
+             ========================================== -->
+        <section id="about" class="section hero-section">
+            <div class="hero-text">
+                <p class="greeting">Hello, I'm</p>
+                <h1>Sahil Kelkar</h1>
+                <h3 class="role">Frontend &amp; MERN Stack Intern</h3>
+                <p class="bio">
+                    I am a computer science student and aspiring web developer currently doing my internship at 
+                    <strong>AISECT Infotech</strong>. I enjoy creating clean, responsive websites using HTML, CSS, and JavaScript.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Hire Me / Contact</a>
+                    <a href="https://github.com/sahil-kelkar" target="_blank" class="btn btn-outline">GitHub Profile</a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img src="../day-2/sahil img.png" alt="Sahil Kelkar" class="profile-pic" onerror="this.src='https://via.placeholder.com/180'">
+            </div>
+        </section>
+
+        <!-- ==========================================
+             3. SKILLS SECTION (Flexbox Badges)
+             ========================================== -->
+        <section id="skills" class="section">
+            <div class="section-title">
+                <h2>My Technical Skills</h2>
+                <p>Technologies I work with in my web development journey</p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <span class="skill-icon">🌐</span>
+                    <h3>HTML5</h3>
+                    <p>Semantic markup &amp; structure</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">🎨</span>
+                    <h3>CSS3</h3>
+                    <p>Flexbox, Grid &amp; Responsive design</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">⚡</span>
+                    <h3>JavaScript</h3>
+                    <p>ES6+, DOM Manipulation &amp; Events</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">⚛️</span>
+                    <h3>React</h3>
+                    <p>Components, State &amp; UI building</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">🟢</span>
+                    <h3>Node.js</h3>
+                    <p>Backend runtime &amp; APIs</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">🍃</span>
+                    <h3>MongoDB</h3>
+                    <p>NoSQL Database &amp; Storage</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             4. PROJECTS SECTION (CSS Grid)
+             ========================================== -->
+        <section id="projects" class="section">
+            <div class="section-title">
+                <h2>Featured Projects</h2>
+                <p>Hands-on projects built during my internship</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-info">
+                        <span class="project-tag">React App</span>
+                        <h3>ToDo List Application</h3>
+                        <p>A task management web application allowing users to add, mark complete, and delete daily to-dos.</p>
+                        <div class="project-tech">
+                            <span>React</span>
+                            <span>JavaScript</span>
+                            <span>CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-info">
+                        <span class="project-tag">CSS Grid</span>
+                        <h3>Responsive Photo Gallery</h3>
+                        <p>A responsive image gallery that dynamically adapts to mobile, tablet, and desktop screens using CSS Grid.</p>
+                        <div class="project-tech">
+                            <span>CSS Grid</span>
+                            <span>Media Queries</span>
+                            <span>HTML5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-info">
+                        <span class="project-tag">JavaScript DOM</span>
+                        <h3>Interactive Web Calculator</h3>
+                        <p>A functional calculator supporting arithmetic operations with real-time input validation and DOM updates.</p>
+                        <div class="project-tech">
+                            <span>JavaScript</span>
+                            <span>DOM Events</span>
+                            <span>Validation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             5. CONTACT SECTION & FORM
+             ========================================== -->
+        <section id="contact" class="section">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+                <p>Feel free to reach out for collaborations or project inquiries</p>
+            </div>
+
+            <div class="contact-box">
+                <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Your Name:</label>
+                        <input type="text" id="name" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Your Email:</label>
+                        <input type="email" id="email" placeholder="Enter your email address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" rows="4" placeholder="Write your message here..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==========================================
+         6. FOOTER
+         ========================================== -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 Sahil Kelkar. Built for Day 6–7 Mini Project.</p>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="https://github.com/sahil-kelkar" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JS -->
+    <script src="script.js"></script>
+</body>
+</html>
