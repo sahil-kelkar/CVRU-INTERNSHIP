@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4 - JavaScript Tasks | Sahil Kelkar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="box">
+        <h1>Day 4: JavaScript Tasks</h1>
+        <p class="subtitle">Sahil Kelkar | AISECT Infotech</p>
+
+        <!-- Task 2: Welcome message loaded dynamically -->
+        <div class="welcome-box">
+            <h2 id="greeting">Welcome!</h2>
+        </div>
+
+        <!-- Task 1 (A): Normal Parameterized Function -->
+        <div class="task-section">
+            <h3>Task 1: Area of Rectangle (Normal Function)</h3>
+            <label for="length">Length:</label>
+            <input type="number" id="length" placeholder="Enter length">
+
+            <label for="width">Width:</label>
+            <input type="number" id="width" placeholder="Enter width">
+
+            <button onclick="calculateArea()">Calculate Area</button>
+            <p id="areaResult" class="result"></p>
+        </div>
+
+        <!-- Task 1 (B): Arrow Function for Voter Eligibility -->
+        <div class="task-section">
+            <h3>Task 1: Voter Eligibility (Arrow Function)</h3>
+            <label for="age">Enter Age:</label>
+            <input type="number" id="age" placeholder="Enter your age">
+
+            <button onclick="checkEligibility()">Check Eligibility</button>
+            <p id="voteResult" class="result"></p>
+        </div>
+    </div>
+
+    <!-- External JS File -->
+    <script src="script.js"></script>
+</body>
+</html>

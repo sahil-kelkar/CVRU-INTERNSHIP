@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5 - DOM & Events | Sahil Kelkar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="box">
+        <!-- Header & Theme Switcher (Bonus) -->
+        <div class="top-bar">
+            <h1>Day 5: DOM &amp; Event Handling</h1>
+            <div class="theme-buttons">
+                <button onclick="setTheme('light')">☀️ Light</button>
+                <button onclick="setTheme('dark')">🌙 Dark</button>
+            </div>
+        </div>
+        <p class="subtitle">Sahil Kelkar | AISECT Infotech</p>
+
+        <!-- ==========================================
+             TASK 1: Interactive Buttons
+             ========================================== -->
+        <div class="task-section">
+            <h2>Task 1: Interactive Buttons &amp; Styles</h2>
+
+            <!-- Sample Text to Manipulate -->
+            <div class="preview-box">
+                <p id="sampleText">Welcome! Try styling this text using the controls below.</p>
+            </div>
+
+            <!-- 1. Color Buttons (Red, Green, Blue) -->
+            <div class="control-row">
+                <label>Text Color:</label>
+                <button class="btn-color btn-red" onclick="changeColor('red')">RED</button>
+                <button class="btn-color btn-green" onclick="changeColor('green')">GREEN</button>
+                <button class="btn-color btn-blue" onclick="changeColor('blue')">BLUE</button>
+            </div>
+
+            <!-- 2. Font Family Dropdown -->
+            <div class="control-row">
+                <label for="fontSelect">Font Family:</label>
+                <select id="fontSelect" onchange="changeFont()">
+                    <option value="Arial, sans-serif">Arial</option>
+                    <option value="'Times New Roman', serif">Times New Roman</option>
+                    <option value="'Courier New', monospace">Courier New</option>
+                    <option value="'Georgia', serif">Georgia</option>
+                </select>
+            </div>
+
+            <!-- 3. Font Size Buttons (A+ / A-) -->
+            <div class="control-row">
+                <label>Font Size:</label>
+                <button class="btn" onclick="changeFontSize(2)">A+ (Increase)</button>
+                <button class="btn" onclick="changeFontSize(-2)">A- (Decrease)</button>
+            </div>
+
+            <!-- 4. Mouseover Font Style (Bold, Italic, Underline) -->
+            <div class="control-row">
+                <label>Hover Style:</label>
+                <button class="btn btn-hover" onmouseover="setStyle('bold')" onmouseout="resetStyle()">Bold</button>
+                <button class="btn btn-hover" onmouseover="setStyle('italic')" onmouseout="resetStyle()">Italic</button>
+                <button class="btn btn-hover" onmouseover="setStyle('underline')" onmouseout="resetStyle()">Underline</button>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             TASK 2: Simple Form Validation
+             ========================================== -->
+        <div class="task-section">
+            <h2>Task 2: Simple Form Validation</h2>
+            <form id="userForm" onsubmit="validateForm(event)">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" placeholder="Enter your name">
+                    <p id="nameError" class="error-msg"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" placeholder="Enter your email">
+                    <p id="emailError" class="error-msg"></p>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit Form</button>
+                <p id="formSuccess" class="success-msg"></p>
+            </form>
+        </div>
+
+        <!-- ==========================================
+             TASK 3: Simple Calculator
+             ========================================== -->
+        <div class="task-section">
+            <h2>Task 3: Simple Calculator</h2>
+
+            <div class="form-group">
+                <label for="num1">First Number:</label>
+                <input type="number" id="num1" placeholder="Enter first number">
+            </div>
+
+            <div class="form-group">
+                <label for="num2">Second Number:</label>
+                <input type="number" id="num2" placeholder="Enter second number">
+            </div>
+
+            <p id="calcError" class="error-msg"></p>
+
+            <div class="calc-buttons">
+                <button class="btn btn-op" onclick="calculate('+')">+</button>
+                <button class="btn btn-op" onclick="calculate('-')">-</button>
+                <button class="btn btn-op" onclick="calculate('*')">×</button>
+                <button class="btn btn-op" onclick="calculate('/')">÷</button>
+            </div>
+
+            <p id="calcResult" class="result-msg"></p>
+        </div>
+
+    </div>
+
+    <!-- External JS -->
+    <script src="script.js"></script>
+</body>
+</html>

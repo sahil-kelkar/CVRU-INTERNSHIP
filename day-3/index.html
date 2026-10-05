@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3 - Flexbox & Grid | Sahil Kelkar</title>
+    
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Page Header -->
+        <header class="page-header">
+            <h1>Day 3: Flexbox &amp; CSS Grid Tasks</h1>
+            <p><strong>Student:</strong> Sahil Kelkar | <strong>Internship:</strong> AISECT Infotech</p>
+        </header>
+
+        <!-- ========================================================
+             TASK 1: Responsive 3-Section Layout Using Flexbox
+             Result:
+             • On desktop → 3 boxes in a row
+             • On mobile  → Stacked sections (in one column)
+             ======================================================== -->
+        <section class="card-section">
+            <div class="section-title">
+                <h2>Task 1: Responsive 3-Section Layout (Flexbox)</h2>
+                <p>On Desktop: 3 boxes in a horizontal row &bull; On Mobile: Stacks vertically in 1 column</p>
+            </div>
+
+            <div class="three-boxes">
+                <div class="box">
+                    <div class="box-icon">🌐</div>
+                    <h3>1. Frontend</h3>
+                    <p>Building responsive and accessible user interfaces using semantic HTML5, modern CSS3, and JavaScript.</p>
+                </div>
+                <div class="box active-box">
+                    <div class="box-icon">⚙️</div>
+                    <h3>2. Backend</h3>
+                    <p>Creating robust server-side logic, controllers, and RESTful APIs using Node.js and Express frameworks.</p>
+                </div>
+                <div class="box">
+                    <div class="box-icon">🗄️</div>
+                    <h3>3. Database</h3>
+                    <p>Managing data storage, schemas, and high-performance queries using MongoDB database systems.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             TASK 2: Simple Photo Gallery Using Grid
+             Result:
+             A neat, responsive gallery that resizes smoothly for all screen sizes.
+             ======================================================== -->
+        <section class="card-section">
+            <div class="section-title">
+                <h2>Task 2: Photo Gallery (CSS Grid)</h2>
+                <p>Built with <code>grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))</code> and <code>gap: 18px</code></p>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- Image 1 -->
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop&q=80" alt="Mountain Lake Valley">
+                    <div class="gallery-caption">
+                        <h4>Mountain Valley Lake</h4>
+                        <p>Beautiful calm water reflection and pine trees.</p>
+                    </div>
+                </div>
+
+                <!-- Image 2 -->
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&auto=format&fit=crop&q=80" alt="Alpine Mountain Sunset">
+                    <div class="gallery-caption">
+                        <h4>Alpine Sunset</h4>
+                        <p>Golden evening light over dramatic snowy peaks.</p>
+                    </div>
+                </div>
+
+                <!-- Image 3 -->
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&auto=format&fit=crop&q=80" alt="Misty Forest Sunlight">
+                    <div class="gallery-caption">
+                        <h4>Deep Green Forest</h4>
+                        <p>Morning sun rays shining through misty trees.</p>
+                    </div>
+                </div>
+
+                <!-- Image 4 -->
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80" alt="Tropical Turquoise Beach">
+                    <div class="gallery-caption">
+                        <h4>Tropical Beach</h4>
+                        <p>Crystal clear turquoise ocean and white sand.</p>
+                    </div>
+                </div>
+
+                <!-- Image 5 -->
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&auto=format&fit=crop&q=80" alt="Starry Sky over Mountains">
+                    <div class="gallery-caption">
+                        <h4>Starry Night Sky</h4>
+                        <p>Milky way and stars over snow-capped mountains.</p>
+                    </div>
+                </div>
+
+                <!-- Image 6 -->
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&auto=format&fit=crop&q=80" alt="Cherry Blossoms in Japan">
+                    <div class="gallery-caption">
+                        <h4>Cherry Blossoms</h4>
+                        <p>Pink sakura blossoms in front of traditional architecture.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 Sahil Kelkar | Day 3 Tasks Done</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

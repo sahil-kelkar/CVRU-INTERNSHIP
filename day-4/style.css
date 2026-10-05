@@ -1,0 +1,110 @@
+/* Basic Reset & Simple Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    padding: 40px 15px;
+    color: #333333;
+}
+
+/* Single Simple Centered Card */
+.box {
+    max-width: 480px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #dddddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+    font-size: 20px;
+    text-align: center;
+    color: #222222;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    font-size: 13px;
+    text-align: center;
+    color: #777777;
+    margin-bottom: 20px;
+}
+
+/* Task 2: Welcome Box */
+.welcome-box {
+    background-color: #e8f2ff;
+    border: 1px solid #b6d4fe;
+    border-radius: 6px;
+    padding: 12px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.welcome-box h2 {
+    font-size: 18px;
+    color: #0d6efd;
+}
+
+/* Task Sections */
+.task-section {
+    border-top: 1px solid #eeeeee;
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+h3 {
+    font-size: 15px;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    margin-top: 8px;
+    margin-bottom: 3px;
+    color: #555555;
+}
+
+input {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    outline: none;
+    margin-bottom: 8px;
+}
+
+input:focus {
+    border-color: #0d6efd;
+}
+
+button {
+    background-color: #0d6efd;
+    color: #ffffff;
+    border: none;
+    padding: 9px 15px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+button:hover {
+    background-color: #0b5ed7;
+}
+
+.result {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #198754;
+}

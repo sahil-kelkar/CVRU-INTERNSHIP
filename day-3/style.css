@@ -1,0 +1,203 @@
+/* ==============================================================
+   Day 3: Flexbox and CSS Grid
+   Student: Sahil Kelkar
+   Internship: AISECT Infotech
+   Theme: Clean Light Theme (Beginner Friendly)
+   ============================================================== */
+
+/* 1. Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f6f9;
+    color: #333333;
+    line-height: 1.6;
+}
+
+/* 2. Container */
+.container {
+    max-width: 960px;
+    margin: 30px auto;
+    padding: 0 15px;
+}
+
+/* 3. Header */
+.page-header {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.page-header h1 {
+    font-size: 24px;
+    color: #1e293b;
+    margin-bottom: 6px;
+}
+
+.page-header p {
+    font-size: 14px;
+    color: #64748b;
+}
+
+/* 4. Section Card Container */
+.card-section {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.section-title h2 {
+    font-size: 20px;
+    color: #1e293b;
+    margin-bottom: 4px;
+    border-bottom: 2px solid #2563eb;
+    display: inline-block;
+    padding-bottom: 4px;
+}
+
+.section-title p {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+.section-title code {
+    background-color: #e2e8f0;
+    color: #0f172a;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* --------------------------------------------------------------
+   TASK 1: Responsive 3-Section Layout Using Flexbox
+   • On desktop -> 3 boxes in a horizontal row
+   • On mobile  -> Stacked sections (in one column)
+   -------------------------------------------------------------- */
+.three-boxes {
+    display: flex;          /* Flexbox 1D layout: row by default */
+    gap: 18px;              /* Spacing between boxes */
+}
+
+.box {
+    flex: 1;                /* Each box gets equal width */
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 22px;
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+}
+
+.active-box {
+    border-top: 4px solid #2563eb;
+}
+
+.box-icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.box h3 {
+    font-size: 17px;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.box p {
+    font-size: 13.5px;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+/* --------------------------------------------------------------
+   TASK 2: Simple Photo Gallery Using CSS Grid
+   • Uses repeat(), auto-fit, minmax(), fr units, and gap
+   -------------------------------------------------------------- */
+.gallery-grid {
+    display: grid;
+    /* Grid 2D layout: fits cards automatically without manual media queries */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.gallery-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gallery-card:hover img {
+    transform: scale(1.03);
+}
+
+.gallery-caption {
+    padding: 14px;
+}
+
+.gallery-caption h4 {
+    font-size: 15px;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+.gallery-caption p {
+    font-size: 12.5px;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+/* 5. Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    color: #888888;
+    margin-top: 10px;
+}
+
+/* --------------------------------------------------------------
+   6. RESPONSIVE MEDIA QUERY
+   Result:
+   • On mobile -> stacked sections (In one Column)
+   • On desktop -> 3 boxes in a row
+   -------------------------------------------------------------- */
+@media (max-width: 768px) {
+    /* TASK 1: Stack sections into 1 column on mobile screens */
+    .three-boxes {
+        flex-direction: column;
+    }
+}
