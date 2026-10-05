@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahil Kelkar - Portfolio (Day 2)</title>
+    
+    <!-- Requirement 3: Google Font (Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Requirement 1: External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container nav-container">
+            <h1 class="logo">Sahil's Portfolio</h1>
+            <nav class="navbar">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#hobbies">Hobbies</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="container">
+
+        <!-- About Me Section -->
+        <section id="about" class="section card about-section">
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>
+                    I am a student as well as a web developer. Currently doing my 
+                    <em>internship</em> at <strong>AISECT Infotech</strong>. 
+                    I am passionate about <mark class="highlight">building MERN applications</mark>.
+                </p>
+                <div class="about-links">
+                    <a href="#contact" class="btn btn-primary">Contact Me</a>
+                    <a href="https://github.com/sahhil-kelkar" target="_blank" class="btn btn-outline">My GitHub Profile</a>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="sahil img.png" alt="Sahil Profile Photo" class="profile-img">
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section card">
+            <h2>My Projects</h2>
+            <div class="project-box">
+                <h3>Project 1: ToDo List App</h3>
+                <p>A dynamic task management application built using <strong>React</strong>.</p>
+                <span class="tag">React</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">CSS</span>
+            </div>
+        </section>
+
+        <!-- Skills Table Section -->
+        <section id="skills" class="section card">
+            <h2>Peer Skills Table</h2>
+            <table class="skills-table">
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Name</th>
+                        <th>Skill</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><strong>Sahil</strong></td>
+                        <td>React</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><strong>Raja</strong></td>
+                        <td>Node.js</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><strong>Krishna</strong></td>
+                        <td>Python</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Hobbies Section -->
+        <section id="hobbies" class="section card">
+            <h2>My Hobbies</h2>
+            <ul class="hobbies-list">
+                <li><span>💻</span> Coding</li>
+                <li><span>📖</span> Reading</li>
+                <li><span>✈️</span> Traveling</li>
+            </ul>
+        </section>
+
+        <!-- Contact Section & Form -->
+        <section id="contact" class="section card">
+            <h2>My Contact</h2>
+            
+            <div class="contact-details">
+                <p><strong>Email:</strong> <a href="mailto:sahilkelkar709@gmail.com">sahilkelkar709@gmail.com</a></p>
+                <p><strong>Phone:</strong> <a href="tel:9691282631">9691282631</a></p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/sahhil-kelkar" target="_blank">github.com/sahhil-kelkar</a></p>
+            </div>
+
+            <hr class="divider">
+
+            <!-- Interactive Contact Form from Day 1 -->
+            <h3>Send a Message / Feedback Form</h3>
+            <form class="contact-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('Form submitted successfully!');">
+                
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Category:</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="category" value="GEN" checked> GEN</label>
+                        <label><input type="radio" name="category" value="OBC"> OBC</label>
+                        <label><input type="radio" name="category" value="SC"> SC</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity (between 1 and 5):</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="5" value="1">
+                </div>
+
+                <div class="form-group">
+                    <label for="files">Select files:</label>
+                    <input type="file" id="files" name="files" multiple>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 Sahil Kelkar | AISECT Infotech Internship (Day 2)</p>
+            <p><a href="#about">Back to Top ↑</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
