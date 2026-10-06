@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2 - Day 1: Modern JavaScript (ES6+) | Sahil Kelkar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Header -->
+        <header class="header-card">
+            <span class="badge">Week 2 &bull; Day 1</span>
+            <h1>Modern JavaScript (ES6+) Features</h1>
+            <p class="subtitle">Student: <strong>Sahil Kelkar</strong> | CVRU / AISECT Infotech</p>
+        </header>
+
+        <!-- Task 1: Destructuring -->
+        <section class="card">
+            <h2>Task 1: Object &amp; Array Destructuring</h2>
+            <p class="card-desc">Object aur Array se values ko aasani se direct variables me unpack karna.</p>
+            
+            <pre><code>// 1. Object Destructuring
+const car = { brand: "Tesla", model: "Model 3", color: "White" };
+const { brand, model } = car;
+
+// 2. Array Destructuring
+const colors = ["Red", "Green", "Blue"];
+const [firstColor, secondColor] = colors;</code></pre>
+
+            <button class="btn" onclick="runTask1()">Run Task 1</button>
+            <div class="result-box" id="task1Result">Click button to view output...</div>
+        </section>
+
+        <!-- Task 2: Spread & Rest -->
+        <section class="card">
+            <h2>Task 2: Spread &amp; Rest Operators (...)</h2>
+            <p class="card-desc"><strong>Spread</strong> array ko expand karta hai (merge), aur <strong>Rest</strong> multiple arguments ko array me gather karta hai.</p>
+
+            <pre><code>// 1. Spread: Arrays ko merge karna
+const fruits = ["Apple", "Banana"];
+const moreFruits = ["Cherry", "Mango"];
+const allFruits = [...fruits, ...moreFruits];
+
+// 2. Rest: Multiple arguments accept karna
+const countItems = (...items) => items;</code></pre>
+
+            <button class="btn" onclick="runTask2()">Run Task 2</button>
+            <div class="result-box" id="task2Result">Click button to view output...</div>
+        </section>
+
+        <!-- Task 3: Template Literals -->
+        <section class="card">
+            <h2>Task 3: Template Literals</h2>
+            <p class="card-desc">Strings me '+' lagane ke bajay backticks (`) aur ${variable} ka use karna.</p>
+
+            <pre><code>const name = "Priya";
+const course = "JavaScript Mastery";
+
+// Template Literal syntax
+const message = `Hello ${name}! Welcome to ${course}.`;</code></pre>
+
+            <button class="btn" onclick="runTask3()">Run Task 3</button>
+            <div class="result-box" id="task3Result">Click button to view output...</div>
+        </section>
+
+        <!-- Task 4: Code Refactor -->
+        <section class="card">
+            <h2>Task 4: ES5 to ES6 Code Refactoring</h2>
+            <p class="card-desc">Purane ES5 code ko modern ES6 (const, arrow function, template literal) me convert karna.</p>
+
+            <div class="comparison-grid">
+                <div class="comparison-box">
+                    <h4>❌ Old ES5 Code</h4>
+                    <pre><code>var user = {name: "Aman", age: 22};
+function greet(user) {
+  return "Hello " + user.name + 
+    ", you are " + user.age + 
+    " years old.";
+}</code></pre>
+                </div>
+                <div class="comparison-box">
+                    <h4>✅ Modern ES6 Code</h4>
+                    <pre><code>const user = { name: "Aman", age: 22 };
+
+const greet = ({ name, age }) => 
+  `Hello ${name}, you are ${age} years old.`;</code></pre>
+                </div>
+            </div>
+
+            <button class="btn" onclick="runTask4()">Run Refactored Greet</button>
+            <div class="result-box" id="task4Result">Click button to view output...</div>
+        </section>
+
+        <!-- Mini Challenge -->
+        <section class="card">
+            <h2>Mini Challenge: Array map() with Arrow Function</h2>
+            <p class="card-desc">Array elements ko double karne ke liye <code>map()</code> aur concise arrow function ka use.</p>
+
+            <pre><code>const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(n => n * 2);</code></pre>
+
+            <button class="btn" onclick="runChallenge()">Run Challenge</button>
+            <div class="result-box" id="challengeResult">Click button to view output...</div>
+        </section>
+
+        <!-- Theory / Summary Card -->
+        <section class="card">
+            <h2>📌 Why ES6 is Important? (Summary)</h2>
+            <ul class="points-list">
+                <li>🔒 <strong>let &amp; const:</strong> Block scoping provide karte hain, jisse accidental variable overwrites aur bugs nahi hote.</li>
+                <li>⚡ <strong>Arrow Functions:</strong> Shorter syntax dete hain aur lexical <code>this</code> maintain karte hain.</li>
+                <li>📝 <strong>Template Literals:</strong> String concatenation ('+') se mukti dete hain aur clean readable format banate hain.</li>
+                <li>📦 <strong>Destructuring &amp; Spread:</strong> Data extraction aur merging ko 1 line ka bana dete hain. React aur MERN me daily use hote hain.</li>
+            </ul>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Sahil Kelkar | <a href="https://github.com/sahil-kelkar" target="_blank">GitHub Profile</a> | CVRU Khandwa Internship</p>
+        </footer>
+
+    </div>
+
+    <!-- External Script -->
+    <script src="script.js"></script>
+</body>
+</html>
