@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2 - Day 2: Functional JavaScript (map, filter, reduce) | Sahil Kelkar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Navigation -->
+        <div class="back-nav">
+            <a href="../week-2-day-1/index.html">&larr; Back to Week 2 - Day 1</a>
+        </div>
+
+        <!-- Header -->
+        <header class="header-card">
+            <span class="badge">Week 2 &bull; Day 2</span>
+            <h1>Functional JavaScript: Higher-Order Functions</h1>
+            <p class="subtitle">Student: <strong>Sahil Kelkar</strong> | CVRU / AISECT Infotech</p>
+        </header>
+
+        <!-- Concept Summary Cards -->
+        <div class="concept-grid">
+            <div class="concept-box filter">
+                <h3>🔍 filter()</h3>
+                <p>Array se sirf wahi elements select karta hai jo condition satisfy karte hain.</p>
+            </div>
+            <div class="concept-box">
+                <h3>⚡ map()</h3>
+                <p>Har element ko transform karta hai aur naya array return karta hai.</p>
+            </div>
+            <div class="concept-box reduce">
+                <h3>🎯 reduce()</h3>
+                <p>Pure array ko accumulate karke ek single final value (e.g., total) banata hai.</p>
+            </div>
+        </div>
+
+        <!-- Task 1: map() and filter() -->
+        <section class="card">
+            <h2>Task 1 – Data Transformation with map() and filter()</h2>
+            <p class="card-desc">Prices me se 250 se badi values filter karo, fir unpar 10% discount lagao.</p>
+
+            <pre><code>const prices = [120, 250, 300, 450, 600];
+
+// 1. Filter prices greater than 250
+const filteredPrices = prices.filter(price => price > 250);
+
+// 2. Apply 10% discount using map()
+const discountedPrices = filteredPrices.map(price => price * 0.90);</code></pre>
+
+            <button class="btn" onclick="runTask1()">Run Task 1</button>
+            <div class="result-box" id="task1Result">Click "Run Task 1" to view output...</div>
+        </section>
+
+        <!-- Task 2: reduce() -->
+        <section class="card">
+            <h2>Task 2 – Calculate Total Expense with reduce()</h2>
+            <p class="card-desc">Expenses array se <code>reduce()</code> ka use karke total expense calculate karo.</p>
+
+            <pre><code>const expenses = [
+    { category: "Food", amount: 300 },
+    { category: "Transport", amount: 150 },
+    { category: "Shopping", amount: 400 }
+];
+
+// reduce() se total amount nikalna
+const totalExpense = expenses.reduce((total, item) => total + item.amount, 0);
+// Output: "Total Expense: ₹850"</code></pre>
+
+            <button class="btn" onclick="runTask2()">Run Task 2</button>
+            <div class="result-box" id="task2Result">Click "Run Task 2" to view output...</div>
+        </section>
+
+        <!-- Task 3: Combine map, filter, reduce -->
+        <section class="card">
+            <h2>Task 3 – Combine map(), filter(), reduce()</h2>
+            <p class="card-desc">Passing scores (>=50) filter karo, +10 bonus marks jodo, aur total nikaalo.</p>
+
+            <pre><code>const scores = [45, 80, 90, 35, 60, 75];
+
+// Method Chaining: filter -> map -> reduce
+const totalScore = scores
+    .filter(score => score >= 50)       // [80, 90, 60, 75]
+    .map(score => score + 10)           // [90, 100, 70, 85]
+    .reduce((sum, score) => sum + score, 0); // 345</code></pre>
+
+            <button class="btn" onclick="runTask3()">Run Task 3</button>
+            <div class="result-box" id="task3Result">Click "Run Task 3" to view output...</div>
+        </section>
+
+        <!-- Mini Challenge: Student Score Analyzer -->
+        <section class="card">
+            <h2>🏆 Mini Challenge – Student Score Analyzer</h2>
+            <p class="card-desc">Paas hone wale students (marks &ge; 50) ko filter karo, +5 bonus do, unke marks dikhao, aur class average calculate karo.</p>
+
+            <pre><code>const students = [
+    { name: "Aman", marks: 85 },
+    { name: "Sara", marks: 42 },
+    { name: "Riya", marks: 68 },
+    { name: "John", marks: 49 }
+];
+
+// 1. Filter passing (>= 50) & add +5 bonus
+const passed = students
+    .filter(s => s.marks >= 50)
+    .map(s => ({ name: s.name, marks: s.marks + 5 }));
+
+// 2. Class average
+const avg = passed.reduce((sum, s) => sum + s.marks, 0) / passed.length;</code></pre>
+
+            <button class="btn" onclick="runChallenge()">Run Student Analyzer</button>
+            <div class="result-box" id="challengeResult">Click "Run Student Analyzer" to view output...</div>
+        </section>
+
+        <footer>
+            <p>MERN Full Stack Internship Program (3 Months) &bull; Dr. C. V. Raman University, Khandwa</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
