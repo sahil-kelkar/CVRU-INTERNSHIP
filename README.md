@@ -16,4 +16,5 @@
 - **[Day 6–7](./day-6%20mini%20project/index.html):** Mini Project - Fully Responsive Personal Portfolio Landing Page.
 - **[Week 2 - Day 1](./week-2-day-1/index.html):** Modern JavaScript (ES6+), Destructuring, Spread/Rest, Template Literals, Arrow Functions, and Code Refactoring.
 - **[Week 2 - Day 2](./week-2-day-2/index.html):** Functional JavaScript, Higher-Order Functions (`map`, `filter`, `reduce`), Method Chaining, and Student Score Analyzer.
+- **[Week 2 - Day 3](./week-2-day-3/index.html):** Asynchronous JavaScript, `setTimeout`, Promises (`resolve`/`reject`), `async/await`, Fetch API, and Weather Fetcher Mini Challenge.
 
