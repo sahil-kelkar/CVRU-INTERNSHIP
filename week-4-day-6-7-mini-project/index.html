@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 4 - Mini Project: Responsive Dashboard Interface</title>
+  <!-- Tailwind CSS CDN with dark mode configured to 'class' -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+  <!-- React 18 & Babel CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors">
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, createContext, useContext } = React;
+
+    // --- Embedded Robust Hash Router (Works offline & over file:// or Live Server) ---
+    const RouterContext = createContext();
+
+    function HashRouter({ children }) {
+      const getPath = () => {
+        const hash = window.location.hash.replace(/^#/, "");
+        return hash ? (hash.startsWith("/") ? hash : "/" + hash) : "/";
+      };
+
+      const [currentPath, setCurrentPath] = useState(getPath);
+
+      useEffect(() => {
+        const onHashChange = () => setCurrentPath(getPath());
+        window.addEventListener("hashchange", onHashChange);
+        if (!window.location.hash) {
+          window.location.hash = "#/";
+        }
+        return () => window.removeEventListener("hashchange", onHashChange);
+      }, []);
+
+      const navigate = (to) => {
+        window.location.hash = `#${to}`;
+      };
+
+      return (
+        <RouterContext.Provider value={{ currentPath, navigate }}>
+          {children}
+        </RouterContext.Provider>
+      );
+    }
+
+    function useLocation() {
+      const ctx = useContext(RouterContext);
+      return { pathname: ctx ? ctx.currentPath : "/" };
+    }
+
+    function NavLink({ to, children, className, onClick }) {
+      const { currentPath, navigate } = useContext(RouterContext);
+      const isActive = currentPath === to;
+      const computedClass = typeof className === "function" ? className({ isActive }) : className;
+
+      const handleClick = (e) => {
+        e.preventDefault();
+        navigate(to);
+        if (onClick) onClick(e);
+      };
+
+      return (
+        <a href={`#${to}`} onClick={handleClick} className={computedClass}>
+          {children}
+        </a>
+      );
+    }
+
+    function Routes({ children }) {
+      const { currentPath } = useContext(RouterContext);
+      const routes = React.Children.toArray(children);
+
+      const matched = routes.find((child) => child.props.path === currentPath);
+      if (matched) return matched.props.element;
+
+      // Fallback: Return dashboard or first route
+      return routes[0] ? routes[0].props.element : null;
+    }
+
+    function Route({ path, element }) {
+      return null;
+    }
+
+    // --- Step 3: Theme Context & Provider ---
+    const ThemeContext = createContext();
+
+    function ThemeProvider({ children }) {
+      const [dark, setDark] = useState(false);
+
+      const toggleTheme = () => setDark((prev) => !prev);
+
+      useEffect(() => {
+        if (dark) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      }, [dark]);
+
+      return (
+        <ThemeContext.Provider value={{ dark, toggleTheme }}>
+          <div className={dark ? "dark" : ""}>
+            {children}
+          </div>
+        </ThemeContext.Provider>
+      );
+    }
+
+    function useTheme() {
+      return useContext(ThemeContext);
+    }
+
+    // --- Step 2: Sidebar Component with Mobile Drawer ---
+    function Sidebar({ isOpen, onClose }) {
+      const navItems = [
+        { path: "/", label: "Dashboard", icon: "📊" },
+        { path: "/users", label: "Users", icon: "👥" },
+        { path: "/reports", label: "Reports", icon: "📑" },
+        { path: "/settings", label: "Settings", icon: "⚙️" },
+      ];
+
+      const getLinkClasses = ({ isActive }) =>
+        `flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${isActive
+          ? "bg-blue-600 text-white shadow-sm"
+          : "text-gray-300 hover:bg-gray-800 hover:text-white"
+        }`;
+
+      const content = (
+        <div className="flex flex-col h-full">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm">
+                ⚡
+              </div>
+              <h2 className="text-xl font-bold tracking-tight text-white">
+                Admin Panel
+              </h2>
+            </div>
+            {onClose && (
+              <button
+                onClick={onClose}
+                className="md:hidden text-gray-400 hover:text-white p-1 text-lg"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+
+          <nav className="flex flex-col gap-2 flex-1">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                onClick={onClose}
+                className={getLinkClasses}
+              >
+                <span className="text-base">{item.icon}</span>
+                <span>{item.label}</span>
+              </NavLink>
+            ))}
+          </nav>
+
+
+        </div>
+      );
+
+      return (
+        <>
+          <aside className="w-64 bg-gray-900 text-white p-6 hidden md:block shrink-0 min-h-screen">
+            {content}
+          </aside>
+
+          {isOpen && (
+            <div className="fixed inset-0 z-50 md:hidden flex">
+              <div
+                className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
+                onClick={onClose}
+              />
+              <aside className="relative w-64 bg-gray-900 text-white p-6 flex flex-col z-10 shadow-2xl">
+                {content}
+              </aside>
+            </div>
+          )}
+        </>
+      );
+    }
+
+    // --- Step 3: Navbar Component ---
+    function Navbar({ onToggleSidebar }) {
+      const { dark, toggleTheme } = useTheme();
+      const location = useLocation();
+
+      const titleMap = {
+        "/": "Dashboard Overview",
+        "/users": "Users Management",
+        "/reports": "Reports & Analytics",
+        "/settings": "Application Settings",
+      };
+
+      const pageTitle = titleMap[location.pathname] || "Dashboard";
+
+      return (
+        <div className="flex justify-between items-center px-6 py-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 transition-colors">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={onToggleSidebar}
+              className="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+              aria-label="Toggle navigation"
+            >
+              ☰
+            </button>
+            <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">
+              {pageTitle}
+            </h1>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <button
+              onClick={toggleTheme}
+              className="px-4 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold hover:bg-blue-700 transition flex items-center gap-1.5"
+            >
+              <span>{dark ? "☀️" : "🌙"}</span>
+              <span>{dark ? "Light Mode" : "Dark Mode"}</span>
+            </button>
+
+            <div className="hidden sm:flex items-center gap-2 pl-3 border-l border-gray-200 dark:border-gray-700">
+              <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs">
+                SK
+              </div>
+              <div className="text-left text-xs">
+                <p className="font-semibold text-gray-800 dark:text-gray-200">Sahil Kelkar</p>
+                <p className="text-gray-400">Admin</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // --- Step 4: Reusable Card Component ---
+    function Card({ title, value, icon, change, isPositive }) {
+      return (
+        <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow hover:scale-105 transition duration-300 border border-gray-100 dark:border-gray-700">
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-gray-600 dark:text-gray-300 text-sm font-medium">{title}</h2>
+            {icon && <span className="text-xl">{icon}</span>}
+          </div>
+          <p className="text-2xl font-bold mt-2 text-gray-900 dark:text-white">{value}</p>
+          {change && (
+            <p className={`text-xs mt-2 font-medium ${isPositive ? "text-emerald-500" : "text-rose-500"}`}>
+              {isPositive ? "↑" : "↓"} {change} vs last month
+            </p>
+          )}
+        </div>
+      );
+    }
+
+    // --- Step 4: Dashboard Page ---
+    function Dashboard() {
+      const stats = [
+        { title: "Total Users", value: "1,250", icon: "👥", change: "+12%", isPositive: true },
+        { title: "Orders Today", value: "78", icon: "🛍️", change: "+5%", isPositive: true },
+        { title: "Revenue", value: "$8,900", icon: "💰", change: "+18%", isPositive: true },
+        { title: "Pending Reports", value: "14", icon: "📑", change: "-2%", isPositive: false },
+      ];
+
+      const weeklyData = [
+        { day: "Mon", height: "45%", value: "$3.4k" },
+        { day: "Tue", height: "65%", value: "$4.8k" },
+        { day: "Wed", height: "55%", value: "$4.1k" },
+        { day: "Thu", height: "80%", value: "$6.2k" },
+        { day: "Fri", height: "95%", value: "$8.9k" },
+        { day: "Sat", height: "70%", value: "$5.5k" },
+        { day: "Sun", height: "40%", value: "$2.9k" },
+      ];
+
+      return (
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-2xl font-semibold mb-2 text-gray-800 dark:text-white">
+              Analytics Overview
+            </h2>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              Overview of real-time administrative metrics &amp; store activity.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {stats.map((s, i) => (
+              <Card
+                key={i}
+                title={s.title}
+                value={s.value}
+                icon={s.icon}
+                change={s.change}
+                isPositive={s.isPositive}
+              />
+            ))}
+          </div>
+
+          {/* Interactive CSS Bar Chart (Step 4 Requirement) */}
+          <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-100 dark:border-gray-700">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-base font-bold text-gray-800 dark:text-white">
+                Weekly Revenue (CSS Static Chart)
+              </h3>
+              <span className="text-xs px-2.5 py-1 rounded bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 font-semibold">
+                Live Data View
+              </span>
+            </div>
+
+            <div className="h-48 flex items-end justify-between gap-3 sm:gap-6 pt-4 border-b border-gray-200 dark:border-gray-700 px-4">
+              {weeklyData.map((item, idx) => (
+                <div key={idx} className="flex-1 flex flex-col items-center gap-2 group h-full justify-end">
+                  <span className="text-[11px] font-mono text-gray-400 opacity-0 group-hover:opacity-100 transition">
+                    {item.value}
+                  </span>
+                  <div
+                    style={{ height: item.height }}
+                    className="w-full max-w-[48px] bg-blue-500 dark:bg-blue-600 rounded-t-md hover:bg-blue-600 dark:hover:bg-blue-400 transition-all cursor-pointer"
+                  />
+                  <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                    {item.day}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // --- Step 5: Users Page with Search Bar ---
+    function Users() {
+      const [searchTerm, setSearchTerm] = useState("");
+
+      const usersList = [
+        { id: 1, name: "Raja Jadham", email: "raja.jadham@example.com", role: "Admin", status: "Active" },
+        { id: 2, name: "Kittu Jadham", email: "kittu.jadham@example.com", role: "Editor", status: "Active" },
+        { id: 3, name: "Akanksha Khede", email: "akanksha.khede@example.com", role: "Viewer", status: "Pending" },
+        { id: 4, name: "Krishna Raverkar", email: "krishna.raverkar@example.com", role: "Editor", status: "Active" },
+        { id: 5, name: "Saloni Chouhan", email: "saloni.chouhan@example.com", role: "Viewer", status: "Inactive" },
+      ];
+
+      const filtered = usersList.filter(
+        (u) =>
+          u.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          u.email.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+      return (
+        <div className="space-y-6">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
+              Users Management
+            </h2>
+            <input
+              type="text"
+              placeholder="Search users..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="px-4 py-2 text-xs rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-64"
+            />
+          </div>
+
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-100 dark:border-gray-700 overflow-hidden">
+            <table className="w-full text-left text-xs">
+              <thead className="bg-gray-50 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 uppercase font-semibold border-b border-gray-100 dark:border-gray-700">
+                <tr>
+                  <th className="p-4">User</th>
+                  <th className="p-4">Role</th>
+                  <th className="p-4">Status</th>
+                  <th className="p-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 dark:divide-gray-700 text-gray-700 dark:text-gray-200">
+                {filtered.map((user) => (
+                  <tr key={user.id} className="hover:bg-gray-50/50 dark:hover:bg-gray-700/30 transition">
+                    <td className="p-4 flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-bold flex items-center justify-center text-xs">
+                        {user.name.charAt(0)}
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-900 dark:text-white">{user.name}</p>
+                        <p className="text-gray-400 text-[11px]">{user.email}</p>
+                      </div>
+                    </td>
+                    <td className="p-4">{user.role}</td>
+                    <td className="p-4">
+                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-semibold ${user.status === "Active"
+                        ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300"
+                        : user.status === "Pending"
+                          ? "bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300"
+                          : "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300"
+                        }`}>
+                        {user.status}
+                      </span>
+                    </td>
+                    <td className="p-4 text-right">
+                      <button className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      );
+    }
+
+    // --- Step 5: Reports Page ---
+    function Reports() {
+      const reports = [
+        { title: "Monthly Financial Audit Q3", date: "Oct 20, 2026", format: "PDF (2.4 MB)" },
+        { title: "User Growth & Retention Breakdown", date: "Oct 18, 2026", format: "CSV (640 KB)" },
+        { title: "Server Uptime & Performance Logs", date: "Oct 15, 2026", format: "JSON (1.1 MB)" },
+      ];
+
+      return (
+        <div className="space-y-6">
+          <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
+            Reports Overview
+          </h2>
+
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-100 dark:border-gray-700 p-6 space-y-4">
+            <h3 className="text-base font-bold text-gray-800 dark:text-white">
+              Generated Reports
+            </h3>
+            <div className="divide-y divide-gray-100 dark:divide-gray-700">
+              {reports.map((r, i) => (
+                <div key={i} className="py-3 flex justify-between items-center text-xs">
+                  <div>
+                    <p className="font-semibold text-gray-900 dark:text-white text-sm">{r.title}</p>
+                    <p className="text-gray-400 mt-0.5">{r.date} • {r.format}</p>
+                  </div>
+                  <button className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition">
+                    Download
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // --- Step 5: Settings Page ---
+    function Settings() {
+      const { dark, toggleTheme } = useTheme();
+
+      return (
+        <div className="space-y-6 max-w-2xl">
+          <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
+            Application Settings
+          </h2>
+
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-100 dark:border-gray-700 p-6 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-semibold text-gray-900 dark:text-white text-sm">Dark Mode Theme</p>
+                <p className="text-xs text-gray-400">Toggle system interface theme using React Context</p>
+              </div>
+              <button
+                onClick={toggleTheme}
+                className="px-3 py-1.5 bg-blue-600 text-white rounded text-xs font-semibold"
+              >
+                {dark ? "Disable Dark Mode" : "Enable Dark Mode"}
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // --- Step 1: Main App Component with React Router ---
+    function App() {
+      const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+      return (
+        <ThemeProvider>
+          <HashRouter>
+            <div className="flex min-h-screen">
+              <Sidebar
+                isOpen={isSidebarOpen}
+                onClose={() => setIsSidebarOpen(false)}
+              />
+
+              <div className="flex-1 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 flex flex-col min-w-0 transition-colors">
+                <Navbar onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)} />
+
+                <div className="p-6 sm:p-8 flex-1 max-w-7xl w-full mx-auto">
+                  <Routes>
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/users" element={<Users />} />
+                    <Route path="/reports" element={<Reports />} />
+                    <Route path="/settings" element={<Settings />} />
+                  </Routes>
+                </div>
+              </div>
+            </div>
+          </HashRouter>
+        </ThemeProvider>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+
+</html>

@@ -30,4 +30,6 @@
 - **[Week 4 - Day 2](./week-4-day-2/README.md):** React Context API (`ThemeContext`), Global State, and Light/Dark Mode Toggle.
 - **[Week 4 - Day 3](./week-4-day-3/README.md):** Tailwind CSS in React, Responsive Navigation Bar with Mobile Menu, and Responsive Card Grid with Hover Effects.
 - **[Week 4 - Day 4](./week-4-day-4/README.md):** Interactive Tailwind UI (Hover, Focus, Transitions) and Custom Color Palette Theme.
+- **[Week 4 - Day 5](./week-4-day-5/index.html):** React Performance & Optimization (React.memo, Re-render Behavior, Lazy Loading with React.lazy & Suspense).
+- **[Week 4 - Days 6–7](./week-4-day-6-7-mini-project/index.html):** Mini Project - Responsive Dashboard Interface (React Router, Tailwind CSS, ThemeContext, Reusable Cards & Sidebar).
 

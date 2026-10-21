@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 4 - Day 5: React Performance & Optimization</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f8fafc; text-align: center;">
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, lazy, Suspense } = React;
+
+    // Task 2: Child component that uses React.memo
+    const Score = React.memo(function Score({ value }) {
+      console.log("Score component rendered!");
+      return (
+        <div style={{ margin: "15px 0", padding: "12px", backgroundColor: "#ecfdf5", border: "1px solid #a7f3d0", borderRadius: "8px" }}>
+          <h3 style={{ margin: 0, color: "#047857" }}>Score: {value}</h3>
+          <p style={{ margin: "5px 0 0", fontSize: "12px", color: "#059669" }}>
+            Optimized with React.memo (Does not re-render when timer updates)
+          </p>
+        </div>
+      );
+    });
+
+    // Task 3: About component for Lazy Loading
+    function About() {
+      console.log("About page loaded dynamically!");
+      return (
+        <div style={{ marginTop: "20px", padding: "15px", backgroundColor: "#f3e8ff", border: "1px solid #d8b4fe", borderRadius: "8px", textAlign: "left" }}>
+          <h3 style={{ margin: "0 0 10px", color: "#6b21a8" }}>About Page (Lazy Loaded)</h3>
+          <p style={{ margin: 0, fontSize: "14px", color: "#4b5563", lineHeight: "1.5" }}>
+            This component loads only on demand using <code>React.lazy</code> and <code>&lt;Suspense&gt;</code>!
+            In a real-life application (like a large Hotel Menu App), lazy loading keeps the initial bundle size small and improves page load speed.
+          </p>
+        </div>
+      );
+    }
+
+    // Lazy load the About component
+    const AboutLazy = lazy(() => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({ default: About });
+        }, 500);
+      });
+    });
+
+    // Main App Component
+    function App() {
+      // Task 1: Timer state that updates every second
+      const [time, setTime] = useState(0);
+      const [showAbout, setShowAbout] = useState(false);
+
+      useEffect(() => {
+        const timer = setInterval(() => {
+          setTime((prev) => prev + 1);
+          console.log("Time updated!");
+        }, 1000);
+
+        return () => clearInterval(timer);
+      }, []);
+
+      return (
+        <div style={{ maxWidth: "600px", margin: "20px auto", backgroundColor: "#ffffff", padding: "30px", borderRadius: "12px", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1)" }}>
+          <h2 style={{ margin: "0 0 8px", color: "#0f172a" }}>Week 4 — Day 5</h2>
+          <h3 style={{ margin: "0 0 20px", color: "#334155", fontWeight: "normal" }}>
+            React Performance &amp; Optimization
+          </h3>
+
+          {/* Task 1: Timer updates every second */}
+          <div style={{ padding: "15px", backgroundColor: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "8px", marginBottom: "15px" }}>
+            <h2 style={{ margin: 0, color: "#1d4ed8" }}>Timer: {time}s</h2>
+            <p style={{ margin: "5px 0 0", fontSize: "12px", color: "#3b82f6" }}>
+              Parent state updates every 1 second (triggers parent re-render)
+            </p>
+          </div>
+
+          {/* Task 2: Memoized Child Component */}
+          <Score value={100} />
+
+          {/* Task 4: Console Log Note */}
+          <p style={{ color: "#64748b", fontSize: "13px", margin: "15px 0 25px" }}>
+            🔍 <em>Open Developer Console (F12) to observe: <code>Score</code> rendered only once, while <code>Time updated!</code> logs every second.</em>
+          </p>
+
+          <hr style={{ border: "none", borderTop: "1px solid #e2e8f0", margin: "25px 0" }} />
+
+          {/* Task 3: Lazy load About page */}
+          <div>
+            <button
+              onClick={() => setShowAbout((prev) => !prev)}
+              style={{
+                padding: "10px 20px",
+                fontSize: "14px",
+                fontWeight: "bold",
+                backgroundColor: "#7c3aed",
+                color: "#ffffff",
+                border: "none",
+                borderRadius: "6px",
+                cursor: "pointer"
+              }}
+            >
+              {showAbout ? "Hide About Page" : "Load About Page (React.lazy)"}
+            </button>
+
+            {showAbout && (
+              <Suspense fallback={<h4 style={{ color: "#7c3aed", marginTop: "20px" }}>Loading component chunk...</h4>}>
+                <AboutLazy />
+              </Suspense>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>
