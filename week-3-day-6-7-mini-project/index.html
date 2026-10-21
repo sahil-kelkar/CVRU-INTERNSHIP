@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Personal Blog UI</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0;">
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // 1. Navbar Component
+    function Navbar() {
+      return (
+        <div style={{ backgroundColor: "#007bff", color: "white", padding: "10px", textAlign: "center" }}>
+          <h2>My Personal Blog</h2>
+        </div>
+      );
+    }
+
+    // 2. BlogCard Component (Props)
+    function BlogCard(props) {
+      return (
+        <div style={{
+          border: "1px solid #ccc",
+          margin: "15px auto",
+          padding: "15px",
+          maxWidth: "400px",
+          borderRadius: "5px",
+          textAlign: "left"
+        }}>
+          <h3 style={{ margin: "0 0 5px 0" }}>{props.title}</h3>
+          <p style={{ margin: "0 0 10px 0", color: "gray", fontSize: "14px" }}>By {props.author}</p>
+          <p style={{ margin: 0 }}>{props.content}</p>
+        </div>
+      );
+    }
+
+    // 3. BlogList Component (Array map)
+    function BlogList() {
+      const blogs = [
+        {
+          id: 1,
+          title: "My First Blog",
+          author: "Sahil",
+          content: "Welcome to my React blog! This is my first blog post."
+        },
+        {
+          id: 2,
+          title: "Learning React",
+          author: "Sahil",
+          content: "React components and JSX are very easy to learn."
+        },
+        {
+          id: 3,
+          title: "What is Props?",
+          author: "Sahil",
+          content: "Props help us pass data from parent to child components."
+        }
+      ];
+
+      return (
+        <div style={{ padding: "10px" }}>
+          {blogs.map((blog) => (
+            <BlogCard
+              key={blog.id}
+              title={blog.title}
+              author={blog.author}
+              content={blog.content}
+            />
+          ))}
+        </div>
+      );
+    }
+
+    // 4. Footer Component
+    function Footer() {
+      return (
+        <div style={{ backgroundColor: "#f1f1f1", padding: "10px", textAlign: "center", marginTop: "30px" }}>
+          <p style={{ margin: 0 }}>© 2026 Sahil Kelkar | My React Blog</p>
+        </div>
+      );
+    }
+
+    // Main App
+    function App() {
+      return (
+        <div>
+          <Navbar />
+          <BlogList />
+          <Footer />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+
+</html>

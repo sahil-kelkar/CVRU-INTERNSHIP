@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App | Mini Project (Week 2)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Navigation -->
+        <div class="nav-bar">
+            <a href="../week-2-day-5/index.html">&larr; Week 2 - Day 5</a>
+            <a href="../README.md">All Weeks</a>
+        </div>
+
+        <!-- Main Weather App Card -->
+        <main class="app-card">
+            <h1 class="app-title">🌤️ Live Weather App</h1>
+
+            <!-- Search Form -->
+            <form class="search-form" onsubmit="event.preventDefault(); getWeather();">
+                <input 
+                    type="text" 
+                    id="cityInput" 
+                    class="search-input" 
+                    placeholder="Enter village, city, or 6-digit PIN code (e.g. Jaswadi, 450881)..." 
+                    autocomplete="off"
+                    required
+                />
+                <button type="submit" class="btn-search">Search</button>
+                <button type="button" class="btn-gps" onclick="getMyLocationWeather()" title="Detect current location & village via GPS">📍 GPS</button>
+            </form>
+
+            <!-- Matching Places / Villages Container (if multiple locations match) -->
+            <div id="matchingPlaces"></div>
+
+            <!-- Quick City & Village Pills for Fast Testing -->
+            <div class="quick-cities">
+                <button type="button" class="quick-btn" onclick="searchCity('Khandwa')">Khandwa</button>
+                <button type="button" class="quick-btn" onclick="searchCity('Jaswadi')">Jaswadi</button>
+                <button type="button" class="quick-btn" onclick="searchCity('Singot')">Singot</button>
+                <button type="button" class="quick-btn" onclick="searchCity('Pandhana')">Pandhana</button>
+                <button type="button" class="quick-btn" onclick="searchCity('450881')">PIN 450881</button>
+                <button type="button" class="quick-btn" onclick="searchCity('Indore')">Indore</button>
+            </div>
+
+            <!-- Weather Dynamic Display Container -->
+            <div id="weatherResult">
+                <div class="weather-card loading">
+                    <div class="spinner"></div>
+                    <p>Loading weather data...</p>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- External Script -->
+    <script src="script.js"></script>
+</body>
+</html>

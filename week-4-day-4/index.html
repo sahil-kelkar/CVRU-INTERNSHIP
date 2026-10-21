@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 4 - Day 4: Tailwind Interactive UI & Custom Palette</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Task 2: Custom Color Palette Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#4B7BEC",
+            secondary: "#A55EEA",
+            accent: "#20BF6B",
+            background: "#F4F6F7",
+          }
+        }
+      }
+    }
+  </script>
+  <!-- React 18 & Babel CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-background min-h-screen">
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // Task 1: Interactive Card + Button + Input
+    function InteractiveCard() {
+      return (
+        <div className="max-w-sm p-4 rounded-xl shadow-md bg-white hover:shadow-xl hover:scale-[1.02] transition-all duration-300 mx-auto text-left">
+          <h3 className="text-xl font-semibold">React Training</h3>
+
+          <p className="text-gray-600 mt-2">
+            Learn React with hands-on examples and real projects.
+          </p>
+
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="mt-3 border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-400 transition w-full outline-none"
+          />
+
+          <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition w-full">
+            Read More
+          </button>
+        </div>
+      );
+    }
+
+    // Main App using Task 2 Custom Palette
+    function App() {
+      return (
+        <div className="bg-background min-h-screen p-6 text-center">
+          <h1 className="text-primary text-3xl font-bold mb-4">Welcome</h1>
+          <button className="bg-secondary text-white px-4 py-2 rounded-lg mb-8">
+            Explore
+          </button>
+
+          <InteractiveCard />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>

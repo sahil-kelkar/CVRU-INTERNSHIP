@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 3 - Day 2: React Components & Props | Sahil Kelkar</title>
+  <!-- React 18 & Babel via CDN for instant browser preview -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: 16px auto;
+      padding: 0 16px;
+    }
+
+    .nav-bar a {
+      color: #2563eb;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .nav-bar a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="nav-bar">
+    <a href="../week-2-day-5/index.html">&larr; Back to Week 2</a>
+    <a href="../week-3-day-3/index.html">Next: Week 3 - Day 3 &rarr;</a>
+  </div>
+
+  <!-- Root mount point for React -->
+  <div id="root"></div>
+
+  <!-- React Code with Babel -->
+  <script type="text/babel">
+    // Task 1: Header Component
+    function Header() {
+      return (
+        <header style={{ backgroundColor: "#007bff", color: "white", padding: "12px", textAlign: "center" }}>
+          <h1 style={{ margin: 0, fontSize: "24px" }}> My Portfolio</h1>
+        </header>
+      );
+    }
+
+    // Task 1: Footer Component
+    function Footer() {
+      return (
+        <footer style={{ backgroundColor: "#f1f1f1", padding: "12px", textAlign: "center", marginTop: "30px", borderTop: "1px solid #e2e8f0" }}>
+          <p style={{ margin: 0, color: "#64748b", fontSize: "14px" }}>© 2025 My Portfolio | Built with ❤️ in React</p>
+        </footer>
+      );
+    }
+
+    // Task 2: Greeting Component with Props
+    function Greeting(props) {
+      return (
+        <div style={{
+          backgroundColor: "#e7f3ff",
+          borderLeft: "4px solid #007bff",
+          padding: "10px 16px",
+          margin: "10px auto",
+          maxWidth: "420px",
+          borderRadius: "6px",
+          textAlign: "left"
+        }}>
+          <h3 style={{ margin: "0 0 4px 0", color: "#0056b3", fontSize: "16px" }}>Hello, {props.name}!</h3>
+          <p style={{ margin: 0, color: "#334155", fontSize: "14px" }}>You are learning <strong>{props.topic}</strong> today.</p>
+        </div>
+      );
+    }
+
+    // Task 3: ProfileCard Component
+    function ProfileCard(props) {
+      const cardStyle = {
+        border: "1px solid #e2e8f0",
+        borderRadius: "10px",
+        padding: "16px",
+        width: "210px",
+        textAlign: "center",
+        margin: "8px",
+        boxShadow: "0 2px 6px rgba(0,0,0,0.06)",
+        backgroundColor: "#ffffff"
+      };
+
+      return (
+        <div style={cardStyle}>
+          <img
+            src={props.image}
+            alt={props.name}
+            style={{ width: "80px", height: "80px", borderRadius: "50%", objectFit: "cover", border: "3px solid #e0f2fe" }}
+          />
+          <h3 style={{ margin: "10px 0 4px 0", fontSize: "16px", color: "#0f172a" }}>{props.name}</h3>
+          <p style={{ margin: 0, color: "#64748b", fontSize: "13.5px" }}>{props.role}</p>
+        </div>
+      );
+    }
+
+    // Main App Component
+    function App() {
+      // Bonus Challenge: Array of user profiles rendered dynamically using .map()
+      const users = [
+        {
+          id: 1,
+          name: "Sahil kelkar",
+          role: "Frontend Developer",
+          image: "https://randomuser.me/api/portraits/men/32.jpg"
+        },
+        {
+          id: 2,
+          name: "Akanksha khede",
+          role: "UI/UX Designer",
+          image: "https://randomuser.me/api/portraits/women/44.jpg"
+        },
+        {
+          id: 3,
+          name: "Krishna Raverkar",
+          role: "Backend Engineer",
+          image: "https://randomuser.me/api/portraits/men/45.jpg"
+        },
+        {
+          id: 4,
+          name: "Kittu Jadham",
+          role: "Full Stack Developer",
+          image: "https://randomuser.me/api/portraits/women/68.jpg"
+        }
+      ];
+
+      return (
+        <div style={{ maxWidth: "900px", margin: "0 auto", backgroundColor: "#ffffff", borderRadius: "12px", overflow: "hidden", boxShadow: "0 4px 12px rgba(0,0,0,0.05)" }}>
+          {/* Task 1: Header */}
+          <Header />
+
+          <main style={{ padding: "24px 20px", textAlign: "center" }}>
+            {/* Task 1: Modular Layout Content */}
+            <h2 style={{ fontSize: "22px", color: "#0f172a", marginBottom: "8px" }}>Welcome to My React App!</h2>
+            <p style={{ color: "#64748b", fontSize: "14.5px", marginTop: 0 }}>
+              This is my first modular React layout with components &amp; props.
+            </p>
+
+            <hr style={{ margin: "24px auto", maxWidth: "600px", border: "0", borderTop: "1px solid #e2e8f0" }} />
+
+            {/* Task 2: Pass Data as Props */}
+            <section>
+              <h2 style={{ fontSize: "18px", color: "#0f172a", marginBottom: "12px" }}>
+                Task 2: Dynamic Greetings with Props
+              </h2>
+              <Greeting name="Priya" topic="React Components" />
+              <Greeting name="Rohan" topic="JSX &amp; Props" />
+            </section>
+
+            <hr style={{ margin: "24px auto", maxWidth: "600px", border: "0", borderTop: "1px solid #e2e8f0" }} />
+
+            {/* Task 3 & Bonus Challenge: Profile Cards rendered with .map() */}
+            <section>
+              <h2 style={{ fontSize: "18px", color: "#0f172a", marginBottom: "6px" }}>
+                Task 3 &amp; Bonus Challenge: Team Profile Cards
+              </h2>
+              <p style={{ color: "#64748b", fontSize: "13.5px", marginTop: 0 }}>
+                Rendered dynamically using <code>.map()</code> from a profiles array
+              </p>
+
+              <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "10px", marginTop: "16px" }}>
+                {users.map((user) => (
+                  <ProfileCard
+                    key={user.id}
+                    name={user.name}
+                    role={user.role}
+                    image={user.image}
+                  />
+                ))}
+              </div>
+            </section>
+          </main>
+
+          {/* Task 1: Footer */}
+          <Footer />
+        </div>
+      );
+    }
+
+    // Mount to DOM
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+
+</html>

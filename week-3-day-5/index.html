@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 3 - Day 5: Conditional Rendering & Login Form</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 20px;">
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    function LoginForm() {
+      const [username, setUsername] = useState("");
+      const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        if (username.trim() !== "") {
+          setIsLoggedIn(true);
+        }
+      };
+
+      const handleLogout = () => {
+        setIsLoggedIn(false);
+        setUsername("");
+      };
+
+      return (
+        <div style={{ textAlign: "center", marginTop: "40px" }}>
+          {isLoggedIn ? (
+            <div>
+              <h2>Welcome, {username}!</h2>
+              <button 
+                onClick={handleLogout} 
+                style={{ padding: "6px 14px", cursor: "pointer" }}
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              <h2>Login Form</h2>
+              <p>Please login to continue.</p>
+
+              <input
+                type="text"
+                placeholder="Enter username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                style={{ padding: "8px", width: "220px" }}
+              />
+
+              <br /><br />
+
+              <button type="submit" style={{ padding: "6px 14px", cursor: "pointer" }}>
+                Login
+              </button>
+            </form>
+          )}
+        </div>
+      );
+    }
+
+    function App() {
+      return (
+        <div>
+          <LoginForm />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>

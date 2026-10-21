@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 4 - Day 1: React Router (Multi-page App)</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-router@6.22.3/dist/umd/react-router.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-router-dom@6.22.3/dist/umd/react-router-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; text-align: center;">
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { HashRouter, Routes, Route, NavLink, useParams } = ReactRouterDOM;
+
+    // 1. Pages
+    function Home() {
+      return <h2>Home Page</h2>;
+    }
+
+    function About() {
+      return <h2>About Page</h2>;
+    }
+
+    function Contact() {
+      return <h2>Contact Page</h2>;
+    }
+
+    function Dashboard() {
+      return <h2>Dashboard Page</h2>;
+    }
+
+    // Dynamic Route Component
+    function PostDetail() {
+      const { postId } = useParams();
+      return (
+        <div>
+          <h2>Post Details</h2>
+          <p>Viewing Post ID: <strong>{postId}</strong></p>
+        </div>
+      );
+    }
+
+    // 2. Navigation Bar Component with Active Link Highlighting
+    function Navbar() {
+      const navStyle = ({ isActive }) => ({
+        margin: "0 10px",
+        textDecoration: "none",
+        color: isActive ? "red" : "blue",
+        fontWeight: isActive ? "bold" : "normal",
+        fontSize: "16px"
+      });
+
+      return (
+        <nav style={{ padding: "14px", backgroundColor: "#f0f0f0", borderRadius: "8px", marginBottom: "30px", maxWidth: "600px", margin: "0 auto 30px auto" }}>
+          <NavLink to="/" style={navStyle}>Home</NavLink>
+          <NavLink to="/about" style={navStyle}>About</NavLink>
+          <NavLink to="/contact" style={navStyle}>Contact</NavLink>
+          <NavLink to="/dashboard" style={navStyle}>Dashboard</NavLink>
+          <NavLink to="/post/101" style={navStyle}>Sample Post</NavLink>
+        </nav>
+      );
+    }
+
+    // Main App
+    function App() {
+      return (
+        <HashRouter>
+          <div>
+            <h1>Week 4 - Day 1: Multi-page React App</h1>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/post/:postId" element={<PostDetail />} />
+              <Route path="*" element={<h2>404 Page Not Found</h2>} />
+            </Routes>
+          </div>
+        </HashRouter>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>

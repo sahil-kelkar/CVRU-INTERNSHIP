@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2 - Day 4: Fetch API Tasks | Sahil Kelkar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Navigation -->
+        <div class="nav-bar">
+            <a href="../week-2-day-3/index.html">&larr; Week 2 - Day 3</a>
+            <a href="../README.md">All Weeks</a>
+            <a href="../week-2-day-5/index.html">Week 2 - Day 5 &rarr;</a>
+        </div>
+
+        <!-- Task 1: Random User Card -->
+        <section class="task-box">
+            <div class="task-header">
+                <h2>Task 1 – Random User Card</h2>
+                <button class="btn" onclick="fetchSingleUser()">Get New Random User</button>
+            </div>
+            <div id="singleUserCard" class="single-user-wrapper">
+                <p>Loading user...</p>
+            </div>
+        </section>
+
+        <!-- Task 2: Multiple Users Grid -->
+        <section class="task-box">
+            <div class="task-header">
+                <h2>Task 2 – Display Multiple Users (5 Users)</h2>
+                <button class="btn btn-secondary" onclick="fetchMultipleUsers()">Fetch 5 Users</button>
+            </div>
+            <div id="multipleUsersGrid" class="users-grid">
+                <p>Loading users...</p>
+            </div>
+        </section>
+
+        <!-- Mini Challenge: User Directory -->
+        <section class="task-box">
+            <div class="task-header">
+                <h2>Mini Task – User Directory</h2>
+                <button class="btn btn-refresh" onclick="loadUserDirectory()">🔄 Refresh Users</button>
+            </div>
+            <div id="directoryGrid" class="users-grid">
+                <p>Loading directory...</p>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

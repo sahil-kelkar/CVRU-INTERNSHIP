@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 3 - Day 3: Simple State & Events</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 20px;">
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    // Task 1: Simple Counter App
+    function CounterApp() {
+      const [count, setCount] = useState(0);
+
+      return (
+        <div style={{ textAlign: "center", margin: "20px" }}>
+          <h1>Counter: {count}</h1>
+          <button 
+            onClick={() => setCount(count + 1)} 
+            style={{ fontSize: "20px", padding: "5px 15px", margin: "5px", cursor: "pointer" }}
+          >
+            +
+          </button>
+          <button 
+            onClick={() => setCount(count - 1)} 
+            style={{ fontSize: "20px", padding: "5px 15px", margin: "5px", cursor: "pointer" }}
+          >
+            -
+          </button>
+        </div>
+      );
+    }
+
+    // Task 2: Live Form Preview
+    function UserForm() {
+      const [name, setName] = useState("");
+      const [email, setEmail] = useState("");
+
+      return (
+        <div style={{ maxWidth: "300px", margin: "20px auto", textAlign: "left" }}>
+          <h2>Registration Form</h2>
+
+          <input
+            type="text"
+            placeholder="Enter Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            style={{ display: "block", width: "100%", padding: "8px", margin: "10px 0", boxSizing: "border-box" }}
+          />
+
+          <input
+            type="email"
+            placeholder="Enter Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            style={{ display: "block", width: "100%", padding: "8px", margin: "10px 0", boxSizing: "border-box" }}
+          />
+
+          <h3>Live Preview:</h3>
+          <p>Name: {name}</p>
+          <p>Email: {email}</p>
+        </div>
+      );
+    }
+
+    // Main App
+    function App() {
+      return (
+        <div style={{ textAlign: "center" }}>
+          <CounterApp />
+          <hr style={{ margin: "30px auto", maxWidth: "400px" }} />
+          <UserForm />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>
