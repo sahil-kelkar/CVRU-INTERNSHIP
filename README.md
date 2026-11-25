@@ -32,4 +32,10 @@
 - **[Week 4 - Day 4](./week-4-day-4/README.md):** Interactive Tailwind UI (Hover, Focus, Transitions) and Custom Color Palette Theme.
 - **[Week 4 - Day 5](./week-4-day-5/index.html):** React Performance & Optimization (React.memo, Re-render Behavior, Lazy Loading with React.lazy & Suspense).
 - **[Week 4 - Days 6–7](./week-4-day-6-7-mini-project/index.html):** Mini Project - Responsive Dashboard Interface (React Router, Tailwind CSS, ThemeContext, Reusable Cards & Sidebar).
+- **[Week 5 - Day 1](./week-5-day-1/README.md):** Introduction to Node.js, V8 Engine, Non-Blocking I/O, Node REPL, Custom Modules (`require`/`module.exports`), and Core Modules (`fs`, `path`, `os`).
+- **[Week 5 - Day 2](./week-5-day-2/README.md):** npm (Node Package Manager), Dependencies vs DevDependencies, Semantic Versioning (semver), `nodemon` Auto-Reload, Custom Math Module (`math.js`), and Third-Party Package (`lodash`).
+- **[Week 5 - Day 3](./week-5-day-3/README.md):** Getting Started with Express.js, HTTP Methods (GET, POST, PUT, DELETE), JSON Responses (`res.json`), Route Parameters (`req.params`), Query Strings (`req.query`), and Postman / Automated API Testing.
+- **[Week 5 - Day 4](./week-5-day-4/README.md):** Express Middleware, REST API Architecture, MVC Folder Structure (`routes/`, `controllers/`, `middleware/`), Full User CRUD, HTTP Status Codes, and Centralized Error Handling.
+- **[Week 6 - Day 1](./week6/Day1/README.md):** Introduction to Databases & MongoDB, MongoDB Compass & Mongosh, Collections, CRUD Operations (`insertMany`, `find`, `updateOne`, `updateMany`, `deleteOne`, `deleteMany`).
+- **[Week 6 - Day 2](./week6/Day2/README.md):** Connecting Node.js to MongoDB Atlas using Mongoose ODM, Environment Variable Security (`dotenv` & `.env`), Async Connection Lifecycle, and Express Server Integration.
 

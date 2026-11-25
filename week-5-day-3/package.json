@@ -1,0 +1,27 @@
+{
+  "name": "week-5-day-3",
+  "version": "1.0.0",
+  "description": "Week 5 Day 3 - Getting Started with Express.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test-api": "node test-api.js"
+  },
+  "keywords": [
+    "express",
+    "routing",
+    "rest-api",
+    "http-methods",
+    "json",
+    "beginner"
+  ],
+  "author": "Sahil Kelkar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

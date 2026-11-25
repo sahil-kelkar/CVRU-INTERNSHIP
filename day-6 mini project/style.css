@@ -1,0 +1,525 @@
+/* ==============================================================
+   Day 6–7 Mini Project: Personal Portfolio Landing Page
+   Student: Sahil Kelkar | AISECT Infotech / CVRU
+   Theme: Simple & Clean (Light / Dark Toggle)
+   ============================================================== */
+
+/* --------------------------------------------------------------
+   1. RESET & BASE STYLES
+   -------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f6f9;
+    color: #333333;
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 60px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-size: 26px;
+    color: #1e293b;
+    margin-bottom: 6px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 6px;
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 45px;
+    height: 3px;
+    background-color: #2563eb;
+    border-radius: 2px;
+}
+
+.section-title p {
+    font-size: 14px;
+    color: #64748b;
+}
+
+/* --------------------------------------------------------------
+   2. HEADER & NAVBAR (Flexbox)
+   -------------------------------------------------------------- */
+.header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.logo span {
+    color: #2563eb;
+}
+
+.nav-links {
+    display: flex;
+    gap: 22px;
+}
+
+.nav-links a {
+    color: #475569;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #2563eb;
+}
+
+.btn-theme {
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-theme:hover {
+    background-color: #e2e8f0;
+}
+
+/* --------------------------------------------------------------
+   3. ABOUT / HERO SECTION (Flexbox)
+   -------------------------------------------------------------- */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 70px 0 50px 0;
+}
+
+.hero-text {
+    flex: 1.2;
+}
+
+.greeting {
+    font-size: 16px;
+    color: #2563eb;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.hero-text h1 {
+    font-size: 34px;
+    color: #1e293b;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.role {
+    font-size: 18px;
+    color: #64748b;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.bio {
+    font-size: 15px;
+    color: #475569;
+    margin-bottom: 25px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 11px 22px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: #2563eb;
+    border: 1px solid #2563eb;
+}
+
+.btn-outline:hover {
+    background-color: #eff6ff;
+    transform: translateY(-2px);
+}
+
+.hero-image {
+    flex: 0.8;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #2563eb;
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.03);
+}
+
+/* --------------------------------------------------------------
+   4. SKILLS SECTION (CSS Grid)
+   -------------------------------------------------------------- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.skill-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 22px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.skill-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.skill-card h3 {
+    font-size: 16px;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+.skill-card p {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* --------------------------------------------------------------
+   5. PROJECTS SECTION (CSS Grid)
+   -------------------------------------------------------------- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+}
+
+.project-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.project-tag {
+    display: inline-block;
+    background-color: #e0e7ff;
+    color: #3730a3;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    align-self: flex-start;
+}
+
+.project-info h3 {
+    font-size: 18px;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.project-info p {
+    font-size: 13.5px;
+    color: #64748b;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.project-tech {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+.project-tech span {
+    background-color: #f1f5f9;
+    color: #475569;
+    font-size: 12px;
+    padding: 3px 9px;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+}
+
+/* --------------------------------------------------------------
+   6. CONTACT SECTION & FORM
+   -------------------------------------------------------------- */
+.contact-box {
+    max-width: 550px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #334155;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-family: inherit;
+    outline: none;
+    background-color: #ffffff;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+}
+
+/* --------------------------------------------------------------
+   7. FOOTER
+   -------------------------------------------------------------- */
+.footer {
+    background-color: #ffffff;
+    padding: 25px 0;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+    font-size: 13px;
+    color: #64748b;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.footer-links a {
+    margin: 0 10px;
+    color: #475569;
+}
+
+.footer-links a:hover {
+    color: #2563eb;
+}
+
+/* --------------------------------------------------------------
+   8. DARK THEME STYLES (Bonus Challenge)
+   -------------------------------------------------------------- */
+body.dark-mode {
+    background-color: #0f172a;
+    color: #f8fafc;
+}
+
+body.dark-mode .header,
+body.dark-mode .footer {
+    background-color: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode .section {
+    border-bottom-color: #334155;
+}
+
+body.dark-mode .logo,
+body.dark-mode .hero-text h1,
+body.dark-mode .section-title h2,
+body.dark-mode .skill-card h3,
+body.dark-mode .project-info h3 {
+    color: #f8fafc;
+}
+
+body.dark-mode .bio,
+body.dark-mode .role,
+body.dark-mode .section-title p,
+body.dark-mode .project-info p,
+body.dark-mode .skill-card p,
+body.dark-mode .nav-links a,
+body.dark-mode .footer-links a {
+    color: #94a3b8;
+}
+
+body.dark-mode .nav-links a:hover,
+body.dark-mode .footer-links a:hover {
+    color: #60a5fa;
+}
+
+body.dark-mode .skill-card,
+body.dark-mode .project-card,
+body.dark-mode .contact-box {
+    background-color: #1e293b;
+    border-color: #334155;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .form-group label {
+    color: #cbd5e1;
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+    background-color: #0f172a;
+    border-color: #334155;
+    color: #f8fafc;
+}
+
+body.dark-mode .project-tech span {
+    background-color: #0f172a;
+    border-color: #334155;
+    color: #94a3b8;
+}
+
+body.dark-mode .btn-theme {
+    background-color: #334155;
+    border-color: #475569;
+    color: #f8fafc;
+}
+
+/* --------------------------------------------------------------
+   9. RESPONSIVE DESIGN (Media Queries)
+   -------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero-section {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 40px 0;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}

@@ -1,1 +1,35 @@
+# ==========================================
+# Git Ignore Configuration
+# ==========================================
+
+# 1. Dependencies (Node.js & npm)
+node_modules/
+**/node_modules/
+
+# 2. Environment Variables & Secrets
+.env
+**/.env
+.env.local
+.env.*.local
+
+# 3. macOS & Windows System Files
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# 4. Production Build Outputs
+dist/
+**/dist/
+build/
+**/build/
+
+# 5. Log Files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 6. Specific Ignore
 sahil img.png

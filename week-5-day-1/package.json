@@ -1,0 +1,24 @@
+{
+  "name": "week-5-day-1",
+  "version": "1.0.0",
+  "description": "Week 5 Day 1 - Introduction to Node.js & Core Modules",
+  "main": "hello.js",
+  "scripts": {
+    "start": "node hello.js",
+    "hello": "node hello.js",
+    "math": "node module-demo.js",
+    "fs": "node file-task.js",
+    "path": "node path-demo.js",
+    "os": "node system-info.js"
+  },
+  "keywords": [
+    "node.js",
+    "beginner",
+    "fs",
+    "os",
+    "path",
+    "modules"
+  ],
+  "author": "Sahil Kelkar",
+  "license": "ISC"
+}

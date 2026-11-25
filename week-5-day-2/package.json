@@ -1,0 +1,27 @@
+{
+  "name": "week-5-day-2",
+  "version": "1.0.0",
+  "description": "Week 5 Day 2 - npm, Third-Party Packages & Modular Programming",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "math": "node app.js",
+    "lodash": "node lodash-demo.js"
+  },
+  "keywords": [
+    "npm",
+    "modules",
+    "commonjs",
+    "nodemon",
+    "lodash"
+  ],
+  "author": "Sahil Kelkar",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
